@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex"
+path="res://.import/Idle-Sheet.png-b1058fbc2fb660294035f2695f5a40ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Background/Background.png"
-dest_files=[ "res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex" ]
+source_file="res://CharacterDemo/Idle-Sheet.png"
+dest_files=[ "res://.import/Idle-Sheet.png-b1058fbc2fb660294035f2695f5a40ae.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex"
+path="res://.import/TX Tileset Ground.png-204c59207d57b0346db5fd3d000d6208.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Background/Background.png"
-dest_files=[ "res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex" ]
+source_file="res://Tileset/TX Tileset Ground.png"
+dest_files=[ "res://.import/TX Tileset Ground.png-204c59207d57b0346db5fd3d000d6208.stex" ]
 
 [params]
 

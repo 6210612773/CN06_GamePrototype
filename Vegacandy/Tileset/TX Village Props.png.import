@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex"
+path="res://.import/TX Village Props.png-9b599d409589edbf5639efa25b15f90c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Background/Background.png"
-dest_files=[ "res://.import/Background.png-041f12864a98e765ac4456e98feb5847.stex" ]
+source_file="res://Tileset/TX Village Props.png"
+dest_files=[ "res://.import/TX Village Props.png-9b599d409589edbf5639efa25b15f90c.stex" ]
 
 [params]
 
