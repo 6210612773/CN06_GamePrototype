@@ -2,3 +2,13 @@
 for TSE project
 
 คลิปวิดิโอทดลองนำเสนอ : https://youtu.be/35r1z06anFU
+
+
+# 5/2/2023 
+Uploading Godot project into Github (including the game(tilemap,asset)
+# 12/2/2023
+Create and set the character camera(having problem about screen size)
+# 18/2/2023
+fixed the problem after writing some basic physic code for character(collision not attach to tilemap)
+# coming up plan
+create HUD and attach with camera + write project progression 2
