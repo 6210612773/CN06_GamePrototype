@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://byo3hp64t33cj"]
+
+[ext_resource type="Texture2D" uid="uid://bwfc5h5ef0mgc" path="res://Art/kenney_platformer-art-candy/Tiles/waffleChoco.png" id="1_8rf0c"]
+[ext_resource type="Script" path="res://misc/caravan.gd" id="1_exqau"]
+[ext_resource type="PackedScene" uid="uid://ckki4wcpyesis" path="res://Hurtbox/hurtbox.tscn" id="3_kgk33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pspki"]
+size = Vector2(74, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjb0l"]
+size = Vector2(39, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rfbp"]
+size = Vector2(30.5, 70)
+
+[node name="Caravan" type="Node2D"]
+script = ExtResource("1_exqau")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_pspki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(1, 0.917)
+texture = ExtResource("1_8rf0c")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_kgk33")]
+collision_layer = 8
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(18.5, -3.5)
+shape = SubResource("RectangleShape2D_rjb0l")
+
+[node name="RangedHurtBox" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 65
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedHurtBox"]
+position = Vector2(14.75, -4)
+shape = SubResource("RectangleShape2D_8rfbp")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hurtbox"]

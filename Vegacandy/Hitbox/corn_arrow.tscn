@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtps0y3fl3dv0"]
+
+[ext_resource type="PackedScene" uid="uid://cbxvj75u8cco5" path="res://Hitbox/hitbox.tscn" id="1_hic7n"]
+[ext_resource type="Script" path="res://CornArrow.gd" id="2_dlp1v"]
+[ext_resource type="Texture2D" uid="uid://d2ffxq5nvtflc" path="res://Art/projectile/arrow.png" id="3_r80ei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s43e4"]
+size = Vector2(34, 10)
+
+[node name="CornArrow" instance=ExtResource("1_hic7n")]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("2_dlp1v")
+damage = 12
+speed = 100
+
+[node name="CollisionShape2D" parent="." index="0" groups=["Projectile"]]
+position = Vector2(4, 1.5)
+shape = SubResource("RectangleShape2D_s43e4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_r80ei")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

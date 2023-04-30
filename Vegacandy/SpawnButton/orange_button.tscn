@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://vxklbqvsrpti"]
+
+[ext_resource type="Texture2D" uid="uid://card868jxvc4v" path="res://Art/button/spawnbutton/mage/summonbuttonmage.png" id="1_1tldv"]
+[ext_resource type="Texture2D" uid="uid://cpban0ot0neq1" path="res://Art/button/spawnbutton/mage/summonbuttonmageCD.png" id="2_7irqp"]
+[ext_resource type="Script" path="res://SpawnButton/orange_button.gd" id="3_cloct"]
+[ext_resource type="LabelSettings" uid="uid://bqof7awp6clha" path="res://SpawnButton/cdlabel.tres" id="4_ukldp"]
+
+[node name="orangeButton" type="TextureButton"]
+offset_left = 1103.0
+offset_top = 540.0
+offset_right = 1153.0
+offset_bottom = 590.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_1tldv")
+texture_disabled = ExtResource("2_7irqp")
+script = ExtResource("3_cloct")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 30.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0"
+label_settings = ExtResource("4_ukldp")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

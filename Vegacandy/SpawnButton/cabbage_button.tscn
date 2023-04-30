@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://rlgla426haeo"]
+
+[ext_resource type="Texture2D" uid="uid://k7demcf38e0h" path="res://Art/button/spawnbutton/tank/summonbuttontank.png" id="1_bammx"]
+[ext_resource type="Texture2D" uid="uid://f6tgi1dhi0fh" path="res://Art/button/spawnbutton/tank/summonbuttontankCD.png" id="2_pr5e4"]
+[ext_resource type="LabelSettings" uid="uid://bqof7awp6clha" path="res://SpawnButton/cdlabel.tres" id="3_qwbfq"]
+
+[sub_resource type="GDScript" id="GDScript_0mo2o"]
+script/source = "extends TextureButton
+@export var cooldown_time = 5
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Label.hide()
+	$TextureProgressBar.value = 0
+	$TextureProgressBar.texture_progress = texture_normal
+	$Timer.wait_time=cooldown_time
+	set_process(false)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	$Label.text = \"%0.1f\" % $Timer.time_left
+	$TextureProgressBar.value=int(($Timer.time_left/cooldown_time)*100)
+	pass
+
+
+func _on_timer_timeout():
+	disabled = false
+	$Label.hide()
+	pass # Replace with function body.
+	
+
+func _on_pressed():
+	disabled = true
+	$Label.show()
+	$Timer.start()
+	set_process(true)
+	pass # Replace with function body.
+"
+
+[node name="cabbageButton" type="TextureButton"]
+offset_left = 128.0
+offset_top = 540.0
+offset_right = 178.0
+offset_bottom = 590.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_bammx")
+texture_disabled = ExtResource("2_pr5e4")
+script = SubResource("GDScript_0mo2o")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0.0196078, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 13.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0"
+label_settings = ExtResource("3_qwbfq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

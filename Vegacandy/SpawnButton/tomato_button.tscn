@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dewt44cmjjuyp"]
+
+[ext_resource type="Texture2D" uid="uid://ba5sqakjxhbg7" path="res://Art/button/spawnbutton/melee/summonbuttonmelee.png" id="1_la07s"]
+[ext_resource type="Texture2D" uid="uid://deouoccx0ii6a" path="res://Art/button/spawnbutton/melee/summonbuttonmeleeCD.png" id="2_7x2mx"]
+[ext_resource type="LabelSettings" uid="uid://bqof7awp6clha" path="res://SpawnButton/cdlabel.tres" id="3_lnmtp"]
+[ext_resource type="Script" path="res://SpawnButton/tomato_button.gd" id="3_xw8yq"]
+
+[node name="tomatoButton" type="TextureButton"]
+offset_left = 453.0
+offset_top = 540.0
+offset_right = 503.0
+offset_bottom = 590.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_la07s")
+texture_disabled = ExtResource("2_7x2mx")
+script = ExtResource("3_xw8yq")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 13.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0"
+label_settings = ExtResource("3_lnmtp")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

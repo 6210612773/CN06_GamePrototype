@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3sioudq4ctnh"]
+
+[ext_resource type="PackedScene" uid="uid://cbxvj75u8cco5" path="res://Hitbox/hitbox.tscn" id="1_qg40u"]
+[ext_resource type="Texture2D" uid="uid://d1fto83awcfbv" path="res://Art/projectile/fireball.png" id="2_bpohu"]
+[ext_resource type="Script" path="res://Hitbox/orange_fire.gd" id="2_k5ex6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuhv5"]
+size = Vector2(24.875, 23)
+
+[node name="orange_fire" instance=ExtResource("1_qg40u")]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("2_k5ex6")
+damage = 30
+speed = 100
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_tuhv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(-9.53674e-07, 1.90735e-06)
+scale = Vector2(4.19922, 4.19922)
+texture = ExtResource("2_bpohu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

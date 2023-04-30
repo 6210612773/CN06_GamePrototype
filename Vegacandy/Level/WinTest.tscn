@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc337twii7iuw"]
+
+[ext_resource type="Texture2D" uid="uid://v8xuqoinndlr" path="res://Art/button/Misc/VICTORY.png" id="1_756e3"]
+[ext_resource type="Texture2D" uid="uid://b613ifoq5jtn1" path="res://Art/button/Misc/mainmenuclicked.png" id="2_8ar0u"]
+[ext_resource type="Texture2D" uid="uid://dee6rlfmreqw5" path="res://Art/button/Misc/mainmenu.png" id="3_rg6rp"]
+[ext_resource type="Texture2D" uid="uid://bn010085vgu23" path="res://Art/button/Misc/stage2cliked.png" id="4_gnwfi"]
+[ext_resource type="Script" path="res://Level/ToMainMenuButton.gd" id="4_mbitc"]
+[ext_resource type="Texture2D" uid="uid://dpy64f4txrcye" path="res://Art/button/Misc/stage2b.png" id="5_h07vf"]
+[ext_resource type="Script" path="res://Level/Stage2Button.gd" id="7_0hk3e"]
+[ext_resource type="Script" path="res://Level/SkyLayer.gd" id="8_16b8m"]
+[ext_resource type="Texture2D" uid="uid://xnmg2bh21jrj" path="res://Art/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="9_xl7lm"]
+
+[node name="Node2D2" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1277.0
+offset_bottom = 718.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(651, 191)
+scale = Vector2(0.343417, 0.251667)
+texture = ExtResource("1_756e3")
+
+[node name="MenuButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 502.0
+offset_right = 544.0
+offset_bottom = 515.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("2_8ar0u")
+texture_hover = ExtResource("3_rg6rp")
+script = ExtResource("4_mbitc")
+
+[node name="StageButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 355.0
+offset_right = 562.0
+offset_bottom = 368.0
+scale = Vector2(6, 6)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gnwfi")
+texture_hover = ExtResource("5_h07vf")
+script = ExtResource("7_0hk3e")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1180, 0)
+script = ExtResource("8_16b8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(642, 369)
+scale = Vector2(2.65833, 2.72059)
+texture = ExtResource("9_xl7lm")
+
+[connection signal="pressed" from="TextureRect/MenuButton" to="TextureRect/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/StageButton" to="TextureRect/StageButton" method="_on_pressed"]

@@ -1,0 +1,305 @@
+[gd_scene load_steps=18 format=3 uid="uid://d2l7l7sotve3x"]
+
+[ext_resource type="Texture2D" uid="uid://wcv4bkftipf0" path="res://Art/vegMob/tomatoes/tomatoattack.png" id="1_40v6b"]
+[ext_resource type="Script" path="res://Character/Mob/tomato/tomato.gd" id="1_etlij"]
+[ext_resource type="Texture2D" uid="uid://dnlywd4klh6tb" path="res://Art/vegMob/tomatoes/tomatowalk.png" id="1_rv8e2"]
+[ext_resource type="Texture2D" uid="uid://df28ii5yfbtop" path="res://Art/vegMob/tomatoes/tomatodie.png" id="2_arnrm"]
+[ext_resource type="PackedScene" uid="uid://cbxvj75u8cco5" path="res://Hitbox/hitbox.tscn" id="5_3nr80"]
+[ext_resource type="PackedScene" uid="uid://ckki4wcpyesis" path="res://Hurtbox/hurtbox.tscn" id="6_fb0jj"]
+[ext_resource type="Script" path="res://Hitbox/tomhitbox.gd" id="6_pudf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loags"]
+size = Vector2(65, 55)
+
+[sub_resource type="Animation" id="Animation_6xovr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gjlna"]
+resource_name = "attack"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_40v6b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"end_of_hit"
+}, {
+"args": [],
+"method": &"start_walk"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_p7bnt"]
+resource_name = "die"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_arnrm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_otua1"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rv8e2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_mophe"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rv8e2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42140"]
+_data = {
+"RESET": SubResource("Animation_6xovr"),
+"attack": SubResource("Animation_gjlna"),
+"die": SubResource("Animation_p7bnt"),
+"idle": SubResource("Animation_otua1"),
+"walk": SubResource("Animation_mophe")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h05cx"]
+size = Vector2(20, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1eq0u"]
+size = Vector2(20, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uq5l"]
+size = Vector2(29, 55)
+
+[node name="tomato" type="CharacterBody2D"]
+position = Vector2(438, 460)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_etlij")
+speed = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_loags")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -11)
+scale = Vector2(2, 2)
+texture = ExtResource("2_arnrm")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+speed_scale = 0.35
+libraries = {
+"": SubResource("AnimationLibrary_42140")
+}
+
+[node name="MobDetector" type="RayCast2D" parent="."]
+position = Vector2(32, 1)
+target_position = Vector2(25, 0)
+collision_mask = 4
+
+[node name="Hitbox" parent="." instance=ExtResource("5_3nr80")]
+collision_layer = 32
+collision_mask = 16
+monitorable = false
+script = ExtResource("6_pudf4")
+damage = 50
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(47, 1)
+shape = SubResource("RectangleShape2D_h05cx")
+
+[node name="Hurtbox" parent="." instance=ExtResource("6_fb0jj")]
+collision_layer = 8
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_1eq0u")
+
+[node name="RangedHurtBox" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 65
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedHurtBox"]
+position = Vector2(15, 0.5)
+shape = SubResource("RectangleShape2D_6uq5l")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

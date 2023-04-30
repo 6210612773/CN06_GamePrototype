@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxpgto4deml18"]
+
+[ext_resource type="Texture2D" uid="uid://df8m8bimp4nwt" path="res://Art/button/Misc/aboutdetail.png" id="1_pn8bp"]
+[ext_resource type="Texture2D" uid="uid://b613ifoq5jtn1" path="res://Art/button/Misc/mainmenuclicked.png" id="2_nhmr3"]
+[ext_resource type="Texture2D" uid="uid://dee6rlfmreqw5" path="res://Art/button/Misc/mainmenu.png" id="3_3n54t"]
+[ext_resource type="Script" path="res://Level/ToMainMenuButton.gd" id="4_yanr3"]
+[ext_resource type="Script" path="res://Level/SkyLayer.gd" id="5_lsaky"]
+[ext_resource type="Texture2D" uid="uid://xnmg2bh21jrj" path="res://Art/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="6_8xclg"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1277.0
+offset_bottom = 718.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(620, 301)
+texture = ExtResource("1_pn8bp")
+
+[node name="QuitButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 559.0
+offset_right = 510.0
+offset_bottom = 572.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("2_nhmr3")
+texture_hover = ExtResource("3_3n54t")
+script = ExtResource("4_yanr3")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1180, 0)
+script = ExtResource("5_lsaky")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(642, 369)
+scale = Vector2(2.65833, 2.72059)
+texture = ExtResource("6_8xclg")
+
+[connection signal="pressed" from="TextureRect/QuitButton" to="TextureRect/QuitButton" method="_on_pressed"]

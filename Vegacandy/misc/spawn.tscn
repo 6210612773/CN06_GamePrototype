@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://npfvebkksle7"]
+
+[ext_resource type="Texture2D" uid="uid://xm5sne7o644k" path="res://Art/kenney_platformer-art-candy/Tiles/lollipopRed.png" id="1_7vfa4"]
+[ext_resource type="Script" path="res://misc/spawn.gd" id="1_sg4vf"]
+[ext_resource type="PackedScene" uid="uid://ckki4wcpyesis" path="res://Hurtbox/hurtbox.tscn" id="3_0t3px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44ccn"]
+size = Vector2(59, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xbcv"]
+size = Vector2(23, 52.6429)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqu77"]
+size = Vector2(20, 52.6429)
+
+[node name="Spawn" type="Node2D"]
+script = ExtResource("1_sg4vf")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_44ccn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.8, 0.728571)
+texture = ExtResource("1_7vfa4")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_0t3px")]
+position = Vector2(-0.5, 0)
+collision_layer = 16
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-17.5, -0.321429)
+shape = SubResource("RectangleShape2D_0xbcv")
+
+[node name="RangedHurtBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedHurtBox"]
+position = Vector2(-8, -0.321429)
+shape = SubResource("RectangleShape2D_pqu77")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hurtbox"]

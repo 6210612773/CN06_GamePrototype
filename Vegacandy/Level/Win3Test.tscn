@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl3kdrrgjod8b"]
+
+[ext_resource type="Texture2D" uid="uid://v8xuqoinndlr" path="res://Art/button/Misc/VICTORY.png" id="1_5wgrp"]
+[ext_resource type="Texture2D" uid="uid://b613ifoq5jtn1" path="res://Art/button/Misc/mainmenuclicked.png" id="2_x8kvo"]
+[ext_resource type="Texture2D" uid="uid://dee6rlfmreqw5" path="res://Art/button/Misc/mainmenu.png" id="3_pnub1"]
+[ext_resource type="Script" path="res://Level/ToMainMenuButton.gd" id="4_0r1k4"]
+[ext_resource type="Script" path="res://Level/SkyLayer.gd" id="5_2ngt7"]
+[ext_resource type="Texture2D" uid="uid://xnmg2bh21jrj" path="res://Art/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="6_6orf6"]
+
+[node name="Node2D2" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1277.0
+offset_bottom = 718.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(651, 191)
+scale = Vector2(0.343417, 0.251667)
+texture = ExtResource("1_5wgrp")
+
+[node name="MenuButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 342.0
+offset_right = 524.0
+offset_bottom = 355.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("2_x8kvo")
+texture_hover = ExtResource("3_pnub1")
+script = ExtResource("4_0r1k4")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1180, 0)
+script = ExtResource("5_2ngt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(642, 369)
+scale = Vector2(2.65833, 2.72059)
+texture = ExtResource("6_6orf6")
+
+[connection signal="pressed" from="TextureRect/MenuButton" to="TextureRect/MenuButton" method="_on_pressed"]

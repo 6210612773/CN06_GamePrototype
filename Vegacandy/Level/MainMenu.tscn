@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://bn71dk7an3y25"]
+
+[ext_resource type="Texture2D" uid="uid://bjucj7br3iu11" path="res://Art/button/title.png" id="1_k3k1w"]
+[ext_resource type="Script" path="res://Level/PlayButton.gd" id="1_stra0"]
+[ext_resource type="Texture2D" uid="uid://dt521d7g1psbv" path="res://Art/button/Misc/about.png" id="2_im126"]
+[ext_resource type="Script" path="res://Level/ExitButton.gd" id="2_j31js"]
+[ext_resource type="Texture2D" uid="uid://cxi354l5tdaa5" path="res://Art/button/Misc/aboutclicked.png" id="3_w3jpl"]
+[ext_resource type="Texture2D" uid="uid://jkvlq330cgq2" path="res://Art/button/Misc/playbuttonclicked.png" id="4_nluw7"]
+[ext_resource type="Texture2D" uid="uid://vvt5whc1wmvu" path="res://Art/button/Misc/playbutton.png" id="5_gxme6"]
+[ext_resource type="Texture2D" uid="uid://b57ay5rvhfsq" path="res://Art/button/Misc/quitbuttonclicked.png" id="6_7wl2c"]
+[ext_resource type="Texture2D" uid="uid://bpqoafx6cu2n6" path="res://Art/button/Misc/quitbutton.png" id="7_gqi0c"]
+[ext_resource type="Script" path="res://Level/AboutButton.gd" id="7_ot66a"]
+[ext_resource type="Script" path="res://Level/SkyLayer.gd" id="8_0v3cu"]
+[ext_resource type="Texture2D" uid="uid://xnmg2bh21jrj" path="res://Art/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="9_hf7q7"]
+[ext_resource type="AudioStream" uid="uid://bumaongshvea6" path="res://sound/HolFix - Pixel Parade.mp3" id="13_j877o"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1277.0
+offset_bottom = 718.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(651, 191)
+scale = Vector2(0.343417, 0.251667)
+texture = ExtResource("1_k3k1w")
+
+[node name="StartButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 289.0
+offset_right = 578.0
+offset_bottom = 302.0
+scale = Vector2(6, 6)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_nluw7")
+texture_hover = ExtResource("5_gxme6")
+script = ExtResource("1_stra0")
+
+[node name="AboutButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 390.0
+offset_right = 577.0
+offset_bottom = 403.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("2_im126")
+texture_hover = ExtResource("3_w3jpl")
+script = ExtResource("7_ot66a")
+
+[node name="QuitButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 487.0
+offset_right = 575.0
+offset_bottom = 500.0
+scale = Vector2(6, 6)
+texture_normal = ExtResource("6_7wl2c")
+texture_hover = ExtResource("7_gqi0c")
+script = ExtResource("2_j31js")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1180, 0)
+script = ExtResource("8_0v3cu")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(642, 369)
+scale = Vector2(2.65833, 2.72059)
+texture = ExtResource("9_hf7q7")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_j877o")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="TextureRect/StartButton" to="TextureRect/StartButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/AboutButton" to="TextureRect/AboutButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/QuitButton" to="TextureRect/QuitButton" method="_on_pressed"]
